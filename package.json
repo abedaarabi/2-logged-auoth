@@ -1,0 +1,19 @@
+{
+  "name": "2-loggedAouth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon -e js app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.21",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.4"
+  }
+}
