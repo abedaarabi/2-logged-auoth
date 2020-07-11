@@ -1,5 +1,5 @@
 {
-  "name": "2-loggedAouth",
+  "name": "retrive-bim360",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -7,7 +7,7 @@
     "start": "nodemon -e js app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Abed Aarabi",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",

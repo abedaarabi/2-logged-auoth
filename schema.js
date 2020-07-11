@@ -1,7 +1,10 @@
 const dotenv = require("dotenv");
 const result = dotenv.config();
 const mysql = require("mysql");
+const { resolve } = require("path");
+const { rejects } = require("assert");
 
+const { log } = require("./errorLog");
 const { sqlPassword } = process.env;
 
 const con = mysql.createConnection({
@@ -28,23 +31,59 @@ const connect = function () {
   });
 };
 
-function insertData(users) {
-  con.query(
-    "delete from userInfo;",
+function insertData(users, lastSignIns) {
+  return new Promise((resolve, rejects) => {
+    con.query(
+      "delete from userInfo;",
 
-    function (err, result) {
-      // console.log(result);
-      insert();
-    }
-  );
-  function insert() {
-    users.map((user) => {
-      //   console.log(users);
+      function (err, result) {
+        // console.log(result);
+        insert().then(() => resolve());
+      }
+    );
+  });
 
-      con.query("INSERT INTO userInfo SET ?", user, function (err, result) {
-        // console.log(err, result);
-      });
-    });
+  async function insert() {
+    await Promise.all(
+      users.map((user) => {
+        //   console.log(users);
+        return new Promise((resolve, reject) => {
+          con.query("INSERT INTO userInfo SET ?", user, function (err, result) {
+            // console.log(err, result);
+            if (err) {
+              log(err);
+              resolve();
+              // console.log(err);
+            } else {
+              resolve();
+            }
+          });
+        });
+      })
+    );
+
+    await insertTwo();
+  }
+
+  function insertTwo() {
+    return Promise.all(
+      lastSignIns.map((lastSignIn) => {
+        return new Promise((resolve, rejects) => {
+          con.query("INSERT INTO userSignIns SET ?", lastSignIn, function (
+            err,
+            result
+          ) {
+            if (err) {
+              log(err.toString());
+              resolve();
+            } else {
+              resolve();
+              console.log(result);
+            }
+          });
+        });
+      })
+    );
   }
 }
 async function getUserData() {
