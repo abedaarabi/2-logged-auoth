@@ -157,4 +157,4 @@ const arr = [1, 2, 3, 4, 5, 6];
 //     return arr[index + 1] * [index - 1];
 //   }
 // });
-// console.log(myarr);
+// console.log(myarr);//
