@@ -82,6 +82,7 @@ async function run() {
     }
 
     async function userMetaData() {
+      await delay(30 * 6000);
       token = token || (await getToken());
 
       console.log(token);
@@ -146,7 +147,6 @@ function server(PORT) {
   app.listen(PORT, console.log(`PORT IS RUNNING ON ${PORT}` || 9090));
 }
 connect(server(PORT));
-
 
 const arr = [1, 2, 3, 4, 5, 6];
 

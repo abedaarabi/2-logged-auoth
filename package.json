@@ -10,10 +10,16 @@
   "author": "Abed Aarabi",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.2",
     "dotenv": "^8.2.0",
+    "espress": "0.0.0",
+    "express": "^4.17.1",
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.21",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.4"
+  },
+  "devDependencies": {
+    "prettier": "2.0.5"
   }
 }
